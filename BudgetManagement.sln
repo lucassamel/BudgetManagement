@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagement", "BudgetManagement\BudgetManagement\BudgetManagement.csproj", "{0296623A-B7D6-45BD-A31C-C688297C738F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagement", "BudgetManagement\BudgetManagement\BudgetManagement.csproj", "{0296623A-B7D6-45BD-A31C-C688297C738F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagement.Client", "BudgetManagement\BudgetManagement.Client\BudgetManagement.Client.csproj", "{DB6650B9-C05F-4D0B-8AB4-A997965962C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagement.Client", "BudgetManagement\BudgetManagement.Client\BudgetManagement.Client.csproj", "{DB6650B9-C05F-4D0B-8AB4-A997965962C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagement.Api", "BudgetManagement.Api\BudgetManagement.Api.csproj", "{7635727C-BC85-43D2-9630-D0E76D9CD62F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagement.Domain", "BudgetManagement.Domain\BudgetManagement.Domain.csproj", "{1956324E-14E4-4EF8-B075-3C668698E24B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{DB6650B9-C05F-4D0B-8AB4-A997965962C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB6650B9-C05F-4D0B-8AB4-A997965962C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB6650B9-C05F-4D0B-8AB4-A997965962C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7635727C-BC85-43D2-9630-D0E76D9CD62F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7635727C-BC85-43D2-9630-D0E76D9CD62F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7635727C-BC85-43D2-9630-D0E76D9CD62F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7635727C-BC85-43D2-9630-D0E76D9CD62F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1956324E-14E4-4EF8-B075-3C668698E24B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1956324E-14E4-4EF8-B075-3C668698E24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1956324E-14E4-4EF8-B075-3C668698E24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1956324E-14E4-4EF8-B075-3C668698E24B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

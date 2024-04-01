@@ -1,0 +1,14 @@
+@BudgetManagement.Api_HostAddress = https://localhost:7291
+
+GET {{BudgetManagement.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{BudgetManagement.Api_HostAddress}}/weatherforecast
+
+###
+
+GET {{BudgetManagement.Api_HostAddress}}/api/user
+
+###
