@@ -1,4 +1,6 @@
 using BudgetManagement.Domain.Data;
+using BudgetManagement.Domain.Interfaces;
+using BudgetManagement.Domain.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -27,6 +29,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 
 builder.Services.AddAuthorization();
 

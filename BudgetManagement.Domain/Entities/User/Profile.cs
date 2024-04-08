@@ -9,6 +9,7 @@ namespace BudgetManagement.Domain.Entities.User
 {
     public class Profile
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         public required string FirstName { get; set; }
