@@ -1,10 +1,9 @@
 ﻿using BudgetManagement.Domain.Data;
-using BudgetManagement.Domain.Entities;
-using Microsoft.AspNetCore.Http;
+using BudgetManagement.Domain.Entities.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BudgetManagement.Api.Controllers
+namespace BudgetManagement.Api.Controllers.User
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -18,16 +17,16 @@ namespace BudgetManagement.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Account>>> GetAllUsers()
+        public async Task<ActionResult<List<Profile>>> GetAllUsers()
         {
-            var users = await _context.Users.ToListAsync();
+            var users = await _context.Profiles.ToListAsync();
 
             return Ok(users);
         }
-        [HttpGet("{id}")]        
-        public async Task<ActionResult<Account>> GetUser(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Profile>> GetUser(int id)
         {
-            var users = await _context.Users.FindAsync(id);
+            var users = await _context.Profiles.FindAsync(id);
             if (users is null)
             {
                 return NotFound("User not found.");
@@ -36,39 +35,39 @@ namespace BudgetManagement.Api.Controllers
             return Ok(users);
         }
         [HttpPost]
-        public async Task<ActionResult<Account>> AddUser(Account account)
+        public async Task<ActionResult<Profile>> AddUser(Profile profile)
         {
-            _context.Users.Add(account);
+            _context.Profiles.Add(profile);
             await _context.SaveChangesAsync();
 
-            return Ok(account);
+            return Ok(profile);
         }
         [HttpPut]
-        public async Task<ActionResult<Account>> UpdateUser(Account account)
+        public async Task<ActionResult<Profile>> UpdateUser(Profile profile)
         {
-            var user = await _context.Users.FindAsync(account.Id);
+            var user = await _context.Profiles.FindAsync(profile.Id);
             if (user is null)
             {
                 return NotFound("User not found.");
             }
 
-            user.FirstName = account.FirstName;
-            user.LastName = account.LastName;
+            user.FirstName = profile.FirstName;
+            user.LastName = profile.LastName;
 
             await _context.SaveChangesAsync();
 
-            return Ok(account);
+            return Ok(profile);
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Account>> DeleteUser(int id)
+        public async Task<ActionResult<Profile>> DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Profiles.FindAsync(id);
             if (user is null)
             {
                 return NotFound("User not found.");
             }
 
-            _context.Users.Remove(user);
+            _context.Profiles.Remove(user);
             await _context.SaveChangesAsync();
 
             return Ok(user);

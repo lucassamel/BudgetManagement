@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgetManagement.Domain.Entities
+namespace BudgetManagement.Domain.Entities.User
 {
-    public class Account
-    {        
+    public class Profile
+    {
         public int Id { get; set; }
         [Required]
         public required string FirstName { get; set; }
