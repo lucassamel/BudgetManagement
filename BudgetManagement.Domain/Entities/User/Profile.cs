@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BudgetManagement.Domain.Entities.Outlay;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,5 +20,6 @@ namespace BudgetManagement.Domain.Entities.User
         [Required]
         [EmailAddress]
         public required string Email { get; set; }
+        public Spent? Spent { get; set; }
     }
 }
