@@ -1,3 +1,4 @@
+using BudgetManagement.Api.Mappings;
 using BudgetManagement.Domain.Data;
 using BudgetManagement.Domain.Interfaces;
 using BudgetManagement.Domain.Repository;
@@ -36,6 +37,8 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<DataContext>();
+
+builder.Services.AddAutoMapper(typeof(EntitiesToDtoMappingProfile));
 
 
 var app = builder.Build();
