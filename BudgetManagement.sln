@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagement.Client", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagement.Api", "BudgetManagement.Api\BudgetManagement.Api.csproj", "{7635727C-BC85-43D2-9630-D0E76D9CD62F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagement.Domain", "BudgetManagement.Domain\BudgetManagement.Domain.csproj", "{1956324E-14E4-4EF8-B075-3C668698E24B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagement.Domain", "BudgetManagement.Domain\BudgetManagement.Domain.csproj", "{1956324E-14E4-4EF8-B075-3C668698E24B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagement.Application", "BudgetManagement.Application\BudgetManagement.Application.csproj", "{222EB5F4-3AB6-4AC3-9A3E-6AE1472D1804}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagement.Infra.Data", "BudgetManagement.Infra.Data\BudgetManagement.Infra.Data.csproj", "{1B19028E-883D-4BF6-8A73-6E80BF5E0660}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagement.Infra.Ioc", "BudgetManagement.Infra.Ioc\BudgetManagement.Infra.Ioc.csproj", "{7C8F7D7D-4278-445B-90FF-552009084A50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{1956324E-14E4-4EF8-B075-3C668698E24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1956324E-14E4-4EF8-B075-3C668698E24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1956324E-14E4-4EF8-B075-3C668698E24B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222EB5F4-3AB6-4AC3-9A3E-6AE1472D1804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222EB5F4-3AB6-4AC3-9A3E-6AE1472D1804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222EB5F4-3AB6-4AC3-9A3E-6AE1472D1804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222EB5F4-3AB6-4AC3-9A3E-6AE1472D1804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B19028E-883D-4BF6-8A73-6E80BF5E0660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B19028E-883D-4BF6-8A73-6E80BF5E0660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B19028E-883D-4BF6-8A73-6E80BF5E0660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B19028E-883D-4BF6-8A73-6E80BF5E0660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C8F7D7D-4278-445B-90FF-552009084A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C8F7D7D-4278-445B-90FF-552009084A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C8F7D7D-4278-445B-90FF-552009084A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C8F7D7D-4278-445B-90FF-552009084A50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

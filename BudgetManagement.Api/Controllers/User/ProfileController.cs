@@ -58,7 +58,14 @@ namespace BudgetManagement.Api.Controllers.User
         [HttpPut]
         public async Task<ActionResult> Update(ProfileDTO profileDTO)
         {
+            if(profileDTO.Id == 0)
+                return BadRequest("Profile ID is required.");
+
             var profile = _mapper.Map<Profile>(profileDTO);
+
+            if (profile is null)
+                return NotFound("Profile not found.");
+
             _profileRepository.Update(profile);
             if (await _profileRepository.SaveAllAsync())
                 return Ok("Profile updated.");
@@ -72,7 +79,7 @@ namespace BudgetManagement.Api.Controllers.User
             var profile = await _profileRepository.Get(id);
 
             if (profile is null)            
-                return BadRequest("Profile not found.");           
+                return NotFound("Profile not found.");           
 
             _profileRepository.Delete(profile);
 
