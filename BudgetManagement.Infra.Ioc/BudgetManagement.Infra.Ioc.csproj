@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BudgetManagement.Application\BudgetManagement.Application.csproj" />
     <ProjectReference Include="..\BudgetManagement.Domain\BudgetManagement.Domain.csproj" />
     <ProjectReference Include="..\BudgetManagement.Infra.Data\BudgetManagement.Infra.Data.csproj" />
