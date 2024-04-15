@@ -9,11 +9,10 @@ namespace BudgetManagement.Domain.Interfaces
 {
     public interface IProfileRepository
     {
-        void Insert(Profile profile);
-        void Update(Profile profile);
-        void Delete(Profile profile);
+        Task<Profile> Insert(Profile profile);
+        Task<Profile> Update(Profile profile);
+        Task<Profile> Delete(int id);
         Task<Profile> Get(int id);
-        Task<IEnumerable<Profile>> GetAll();
-        Task<bool> SaveAllAsync();
+        Task<IEnumerable<Profile>> GetAll();        
     }
 }

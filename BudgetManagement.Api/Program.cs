@@ -1,11 +1,3 @@
-using BudgetManagement.Api.Mappings;
-using BudgetManagement.Domain.Data;
-using BudgetManagement.Domain.Interfaces;
-using BudgetManagement.Domain.Repository;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
 using BudgetManagement.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,8 +28,6 @@ builder.Services.AddAuthorization();
 
 //builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 //    .AddEntityFrameworkStores<DataContext>();
-
-builder.Services.AddAutoMapper(typeof(EntitiesToDtoMappingProfile));
 
 var app = builder.Build();
 

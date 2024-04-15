@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using BudgetManagement.Api.DTO;
-using BudgetManagement.Domain.Entities.User;
-using BudgetManagement.Domain.Interfaces;
-using BudgetManagement.Domain.Repository;
+using BudgetManagement.Application.DTOs;
+using BudgetManagement.Application.Interfaces;
+using BudgetManagement.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Profile = BudgetManagement.Domain.Entities.User.Profile;
 
@@ -13,80 +12,67 @@ namespace BudgetManagement.Api.Controllers.User
 
     public class ProfileController : Controller
     {
-        private readonly IProfileRepository _profileRepository;
+        private readonly IProfileService _profileService;
         private readonly IMapper _mapper;
 
-        public ProfileController(IProfileRepository profileRepository, IMapper mapper)
+        public ProfileController(IProfileService profileService, IMapper mapper)
         {
-            _profileRepository = profileRepository;
+            _profileService = profileService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Profile>>> GetAll() 
+        public async Task<ActionResult> GetAll() 
         {
-            var profiles = await _profileRepository.GetAll();
-            var profilesDTO = _mapper.Map<IEnumerable<Profile>>(profiles);
+            var profilesDTO = await _profileService.GetAll();           
 
             return Ok(profilesDTO);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Profile>> Get(int id)
+        public async Task<ActionResult> Get(int id)
         {
-            Profile profile = await _profileRepository.Get(id);
+            var profileDTO = await _profileService.Get(id);
 
-            if(profile is null)
-                return NotFound();
-
-            ProfileDTO profileDTO = _mapper.Map<ProfileDTO>(profile);
+            if(profileDTO is null)
+                return NotFound("Profile not found.");           
 
             return Ok(profileDTO);
         }
 
         [HttpPost]
         public async Task<ActionResult> Post(ProfileDTO profileDTO)
-        {
-            var profile = _mapper.Map<Profile>(profileDTO);
-            _profileRepository.Insert(profile);
-            if (await _profileRepository.SaveAllAsync())
-                return Ok();
-            
-            return BadRequest();
+        {          
+           var profile = await _profileService.Insert(profileDTO);
+
+            if (profile is null)
+                return BadRequest();
+
+            return Ok("Profile Included!");
         }
 
         [HttpPut]
         public async Task<ActionResult> Update(ProfileDTO profileDTO)
         {
-            if(profileDTO.Id == 0)
-                return BadRequest("Profile ID is required.");
+            var profileDTOUpdated = await _profileService.Update(profileDTO);
 
-            var profile = _mapper.Map<Profile>(profileDTO);
+            if (profileDTOUpdated is null)
+                return BadRequest();
 
-            if (profile is null)
-                return NotFound("Profile not found.");
-
-            _profileRepository.Update(profile);
-            if (await _profileRepository.SaveAllAsync())
-                return Ok("Profile updated.");
-
-            return BadRequest();
+            return Ok("Profile Updated!");
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var profile = await _profileRepository.Get(id);
+            var profile = await _profileService.Get(id);
 
             if (profile is null)            
-                return NotFound("Profile not found.");           
+                return NotFound("Profile not found.");
 
-            _profileRepository.Delete(profile);
+            await _profileService.Delete(id);           
 
-            if (await _profileRepository.SaveAllAsync())
-                return Ok();
-
-            return BadRequest();
+            return Ok(profile);
         }
     }
 }

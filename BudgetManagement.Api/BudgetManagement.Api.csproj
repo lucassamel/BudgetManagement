@@ -17,8 +17,4 @@
     <ProjectReference Include="..\BudgetManagement.Infra.Ioc\BudgetManagement.Infra.Ioc.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>
