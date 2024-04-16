@@ -4,14 +4,12 @@ using BudgetManagement.Application.Services;
 using BudgetManagement.Domain.Interfaces;
 using BudgetManagement.Infra.Data.Context;
 using BudgetManagement.Infra.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BudgetManagement.Infra.Ioc
 {
@@ -24,6 +22,27 @@ namespace BudgetManagement.Infra.Ioc
             {
                 option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+            });
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = configuration["jwt:issuer"],
+                    ValidAudience = configuration["jwt:audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(configuration["jwt:secretKey"])),
+                    ClockSkew = TimeSpan.Zero
+                };
             });
 
             services.AddAutoMapper(typeof(EntitiesToDtoMappingProfile));
