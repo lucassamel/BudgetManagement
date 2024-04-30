@@ -1,5 +1,6 @@
 ﻿using BudgetManagement.Domain.Account;
 using BudgetManagement.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,7 +23,7 @@ namespace BudgetManagement.Infra.Data.Identity
 
         public async Task<bool> Authenticate(string email, string password)
         {
-            var user = _context.User.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefault();
+            var user = await _context.User.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
             if (user is null)           
                 return false;
             
