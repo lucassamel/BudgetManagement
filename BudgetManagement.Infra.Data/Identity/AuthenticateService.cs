@@ -68,7 +68,7 @@ namespace BudgetManagement.Infra.Data.Identity
 
         public async Task<bool> UserExist(string email)
         {
-            var user = _context.User.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefault();
+            var user = await _context.User.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
             if (user is null)
                 return false;
 
