@@ -1,13 +1,7 @@
-﻿using BudgetManagement.Domain.Entities.Account;
-using BudgetManagement.Domain.Entities.User;
+﻿using BudgetManagement.Domain.Entities.User;
 using BudgetManagement.Domain.Interfaces;
 using BudgetManagement.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudgetManagement.Infra.Data.Repositories
 {

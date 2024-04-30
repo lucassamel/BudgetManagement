@@ -1,10 +1,4 @@
-﻿using BudgetManagement.Domain.Entities.Account;
-using BudgetManagement.Domain.Entities.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BudgetManagement.Domain.Entities.User;
 
 namespace BudgetManagement.Domain.Interfaces
 {
