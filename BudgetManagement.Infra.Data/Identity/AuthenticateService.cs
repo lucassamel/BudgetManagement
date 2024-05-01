@@ -1,4 +1,5 @@
 ﻿using BudgetManagement.Domain.Account;
+using BudgetManagement.Domain.Entities.User;
 using BudgetManagement.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -64,6 +65,11 @@ namespace BudgetManagement.Infra.Data.Identity
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _context.User.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
         }
 
         public async Task<bool> UserExist(string email)

@@ -2,6 +2,7 @@
 using BudgetManagement.Application.DTOs;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Profile = BudgetManagement.Domain.Entities.User.Profile;
 
@@ -41,6 +42,7 @@ namespace BudgetManagement.Api.Controllers.User
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> Post(ProfileDTO profileDTO)
         {          
            var profile = await _profileService.Insert(profileDTO);

@@ -6,6 +6,7 @@ using BudgetManagement.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,6 +47,16 @@ namespace BudgetManagement.Application.Services
         public async Task<UserDTO> Insert(UserDTO userDTO)
         {
             var user = _mapper.Map<User>(userDTO);
+
+            if(userDTO.Password is not null)
+            {
+                using var hmac = new HMACSHA512();
+                byte[] passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userDTO.Password));
+                byte[] passwordSalt = hmac.Key;
+
+                user.ChangePassword(passwordHash, passwordSalt);
+            }
+
             await _userRepository.Insert(user);
 
             return _mapper.Map<UserDTO>(user);

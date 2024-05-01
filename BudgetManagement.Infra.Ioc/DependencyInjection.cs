@@ -1,8 +1,10 @@
 ﻿using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Application.Mappings;
 using BudgetManagement.Application.Services;
+using BudgetManagement.Domain.Account;
 using BudgetManagement.Domain.Interfaces;
 using BudgetManagement.Infra.Data.Context;
+using BudgetManagement.Infra.Data.Identity;
 using BudgetManagement.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -49,9 +51,12 @@ namespace BudgetManagement.Infra.Ioc
 
             //Repositories
             services.AddScoped<IProfileRepository, ProfileRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();            
 
             //Services
             services.AddScoped<IProfileService,ProfileService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthenticate, AuthenticateService>();
 
             return services;
         }

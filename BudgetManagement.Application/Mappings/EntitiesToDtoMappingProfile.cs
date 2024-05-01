@@ -13,7 +13,8 @@ namespace BudgetManagement.Application.Mappings
     {
         public EntitiesToDtoMappingProfile()
         {
-            CreateMap<BudgetManagement.Domain.Entities.User.Profile, ProfileDTO>().ReverseMap();
+            CreateMap<Domain.Entities.User.Profile, ProfileDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
         }
     }
 }
