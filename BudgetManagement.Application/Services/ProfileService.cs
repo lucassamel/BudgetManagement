@@ -34,7 +34,7 @@ namespace BudgetManagement.Application.Services
 
         public async Task<IEnumerable<ProfileDTO>> GetAll()
         {
-            var profiles = await _repository.GetAll();
+            var profiles = await _repository.GetAllAsync();
 
             return _mapper.Map<IEnumerable<ProfileDTO>>(profiles);
         }

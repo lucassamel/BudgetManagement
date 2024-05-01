@@ -45,7 +45,7 @@ namespace BudgetManagement.Api.Controllers.User
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(ProfileDTO profileDTO)
+        public async Task<ActionResult> Insert(ProfileDTO profileDTO)
         {          
            var profile = await _profileService.Insert(profileDTO);
 

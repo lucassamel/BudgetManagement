@@ -1,13 +1,7 @@
-﻿using BudgetManagement.Domain;
-using BudgetManagement.Domain.Entities.User;
+﻿using BudgetManagement.Domain.Entities.User;
 using BudgetManagement.Domain.Interfaces;
 using BudgetManagement.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudgetManagement.Infra.Data.Repositories
 {
@@ -34,7 +28,7 @@ namespace BudgetManagement.Infra.Data.Repositories
             return await _context.Profile.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Profile>> GetAll()
+        public async Task<IEnumerable<Profile>> GetAllAsync()
         {
             return await _context.Profile.ToListAsync();
         }

@@ -51,12 +51,16 @@ namespace BudgetManagement.Infra.Ioc
 
             //Repositories
             services.AddScoped<IProfileRepository, ProfileRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();            
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ISpentRepository, SpentRepository>();
 
             //Services
             services.AddScoped<IProfileService,ProfileService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthenticate, AuthenticateService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ISpentService, SpentService>();
 
             return services;
         }
