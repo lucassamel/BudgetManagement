@@ -12,6 +12,7 @@ namespace BudgetManagement.Domain.Entities.User
         public int Id { get; private set; }
         public string Name { get; private set; }
         public string Email { get; private set; }
+        public bool IsAdmin { get; set; }
         public byte[] PasswordHash { get; private set; }
         public byte[] PasswordSalt { get; private set; }
 
@@ -19,12 +20,17 @@ namespace BudgetManagement.Domain.Entities.User
         {
             DomainExceptionValidation.When(id < 0 , "ID must be positive");
             Id = id;
-            ValidateDomain(name, email);
+            ValidateDomain(name, email);            
         }
 
         public User( string name, string email)
         {            
             ValidateDomain(name, email);
+        }
+
+        public void SetAdmin(bool isAdmin)
+        {
+            IsAdmin = isAdmin;  
         }
 
         public void ChangePassword(byte[] passwordHash, byte[] passwordSalt)
@@ -42,6 +48,7 @@ namespace BudgetManagement.Domain.Entities.User
 
             Name = name;
             Email = email;
+            IsAdmin = false;
         }
     }
 }

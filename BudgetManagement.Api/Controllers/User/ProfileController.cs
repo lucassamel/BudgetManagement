@@ -2,6 +2,7 @@
 using BudgetManagement.Application.DTOs;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Application.Services;
+using BudgetManagement.Infra.Ioc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Profile = BudgetManagement.Domain.Entities.User.Profile;
@@ -10,16 +11,18 @@ namespace BudgetManagement.Api.Controllers.User
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
 
     public class ProfileController : Controller
     {
         private readonly IProfileService _profileService;
-        private readonly IMapper _mapper;
-
-        public ProfileController(IProfileService profileService, IMapper mapper)
+        private readonly IUserService _userService;
+       
+        public ProfileController(IProfileService profileService, IUserService userService)
         {
             _profileService = profileService;
-            _mapper = mapper;
+            _userService = userService;
+            
         }
 
         [HttpGet]
@@ -42,7 +45,6 @@ namespace BudgetManagement.Api.Controllers.User
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult> Post(ProfileDTO profileDTO)
         {          
            var profile = await _profileService.Insert(profileDTO);
@@ -67,6 +69,14 @@ namespace BudgetManagement.Api.Controllers.User
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
+            var userId = User.GetId();
+            var user = await _userService.Get(userId);
+
+            if(!user.IsAdmin)
+            {
+                return Unauthorized("You don't have permission to exclude a Profile.");
+            }
+
             var profile = await _profileService.Get(id);
 
             if (profile is null)            
