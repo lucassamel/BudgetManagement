@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Application.DTOs;
+﻿using BudgetManagement.Application.DTOs.Outlay.Category;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Infra.Ioc;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +24,8 @@ namespace BudgetManagement.Api.Controllers.Outlay
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            var categorysDTO = await _categoryService.GetAllAsync();
+            //Retrieve all user's Categories
+            var categorysDTO = await _categoryService.GetAllAsync(User.GetId());
 
             return Ok(categorysDTO);
         }
@@ -41,9 +42,11 @@ namespace BudgetManagement.Api.Controllers.Outlay
         }
 
         [HttpPost]
-        public async Task<ActionResult> Insert(CategoryDTO categoryDTO)
+        public async Task<ActionResult> Insert(CategoryPostDTO categoryPostDTO)
         {
-            var category = await _categoryService.Insert(categoryDTO);
+            //Retrieve the UserID from the JWT token
+            categoryPostDTO.IdProfile = User.GetId();
+            var category = await _categoryService.Insert(categoryPostDTO);
 
             if (category is null)
                 return BadRequest();
@@ -52,12 +55,19 @@ namespace BudgetManagement.Api.Controllers.Outlay
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update(CategoryDTO categoryDTO)
+        public async Task<ActionResult> Update(CategoryPutDTO categoryPutDTO)
         {
+            var categoryDTO = await _categoryService.GetAsync(categoryPutDTO.Id);
+            if (categoryDTO is null)
+                return BadRequest("Category not found.");
+
+            categoryDTO.Name = categoryPutDTO.Name;
+            categoryDTO.Description = categoryPutDTO.Description;
+
             var categoryDTOUpdated = await _categoryService.Update(categoryDTO);
 
             if (categoryDTOUpdated is null)
-                return BadRequest();
+                return BadRequest("An error occurred while changing the Category.");
 
             return Ok("Category Updated!");
         }

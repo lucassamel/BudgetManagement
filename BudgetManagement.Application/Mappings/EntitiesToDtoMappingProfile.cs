@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using BudgetManagement.Application.DTOs;
+using BudgetManagement.Application.DTOs.Outlay.Category;
+using BudgetManagement.Application.DTOs.Outlay.Spent;
 using BudgetManagement.Domain.Entities.Outlay;
 using BudgetManagement.Domain.Entities.User;
 using System;
@@ -16,10 +18,12 @@ namespace BudgetManagement.Application.Mappings
         {
             CreateMap<Domain.Entities.User.Profile, ProfileDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<Category, CategoryDTO>().ReverseMap()
-                .ForMember(dest => dest.Profile, opt => opt.MapFrom(x => x.ProfileDTO))
-                .ForMember(dest => dest.Spents, opt => opt.MapFrom(x => x.SpentsDTO));
+            CreateMap<CategoryDTO, Category>().ReverseMap()
+                .ForMember(dest => dest.ProfileDTO, opt => opt.MapFrom(x => x.Profile))
+                .ForMember(dest => dest.SpentsDTO, opt => opt.MapFrom(x => x.Spents));
+            CreateMap<Category, CategoryPostDTO>().ReverseMap();
             CreateMap<Spent, SpentDTO>().ReverseMap();
+            CreateMap<Spent, SpentPostDTO>().ReverseMap();
         }
     }
 }

@@ -1,11 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
-namespace BudgetManagement.Application.DTOs
+namespace BudgetManagement.Application.DTOs.Outlay.Category
 {
-    public class CategoryDTO
+    public class CategoryPostDTO
     {
-        public int Id { get; set; }
         [JsonIgnore]
         public int IdProfile { get; set; }
         [Required(ErrorMessage = "Category Name is required.")]
@@ -13,9 +17,6 @@ namespace BudgetManagement.Application.DTOs
         public string Name { get; set; }
         [MaxLength(200, ErrorMessage = "Description can't be more than 200 characters.")]
         public string Description { get; set; }
-        [JsonIgnore]
-        public ProfileDTO ProfileDTO { get; set; }
-        [JsonIgnore]
-        public ICollection<SpentDTO> SpentsDTO { get; set; }
+
     }
 }

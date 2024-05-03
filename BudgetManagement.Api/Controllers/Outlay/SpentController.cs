@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Application.DTOs;
+﻿using BudgetManagement.Application.DTOs.Outlay.Spent;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Infra.Ioc;
 using Microsoft.AspNetCore.Http;
@@ -39,9 +39,9 @@ namespace BudgetManagement.Api.Controllers.Outlay
         }
 
         [HttpPost]
-        public async Task<ActionResult> Insert(SpentDTO spentDTO)
+        public async Task<ActionResult> Insert(SpentPostDTO spentPostDTO)
         {
-            var spent = await _spentService.Insert(spentDTO);
+            var spent = await _spentService.Insert(spentPostDTO);
 
             if (spent is null)
                 return BadRequest();

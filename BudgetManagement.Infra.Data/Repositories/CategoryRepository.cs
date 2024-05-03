@@ -29,12 +29,17 @@ namespace BudgetManagement.Infra.Data.Repositories
 
         public async Task<Category> GetAsync(int id)
         {
-            return await _context.Category.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _context.Category.Where(x => x.Id == id).
+                Include(x => x.Profile)
+                .Include(x => x.Spents).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<IEnumerable<Category>> GetAllAsync(int id)
         {
-            return await _context.Category.ToListAsync();
+            return await _context.Category
+                .Where(x => x.IdProfile == id)
+                .Include(x => x.Profile)
+                .Include(x => x.Spents).ToListAsync();
         }
 
         public async Task<Category> Insert(Category category)

@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Domain.Entities.Outlay;
+﻿using BudgetManagement.Application.DTOs.Outlay.Category;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,21 +7,20 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace BudgetManagement.Application.DTOs
+namespace BudgetManagement.Application.DTOs.Outlay.Spent
 {
-    public class SpentDTO
+    public class SpentPostDTO
     {
-        public int Id { get; private set; }
+        [Required(ErrorMessage = "Category ID is required.")]
         public int IdCategory { get; set; }
+        [Required(ErrorMessage = "Profile ID is required.")]
         public int IdProfile { get; set; }
         [Required(ErrorMessage = "Value can't be null.")]
-        public int Value { get; private set; }
+        [Range(0, (double)decimal.MaxValue)]
+        public decimal Value { get; set; }
         [Required(ErrorMessage = "Date can't be null.")]
-        public DateOnly Date { get; private set; }
+        public DateOnly Date { get; set; }
         [MaxLength(200, ErrorMessage = "Description must be less than 200 characters.")]
-        public string Description { get; private set; }
-        public CategoryDTO Category { get; set; }
-        [JsonIgnore]
-        public ProfileDTO Profile { get; set; }
+        public string Description { get; set; }                
     }
 }

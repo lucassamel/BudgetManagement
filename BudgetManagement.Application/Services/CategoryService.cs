@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BudgetManagement.Application.DTOs;
+using BudgetManagement.Application.DTOs.Outlay.Category;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Domain.Entities.Outlay;
 using BudgetManagement.Domain.Interfaces;
@@ -36,16 +36,16 @@ namespace BudgetManagement.Application.Services
             return _mapper.Map<CategoryDTO>(category);
         }
 
-        public async Task<IEnumerable<CategoryDTO>> GetAllAsync()
+        public async Task<IEnumerable<CategoryDTO>> GetAllAsync(int id)
         {
-            var categorys = await _repository.GetAllAsync();
+            var categorys = await _repository.GetAllAsync(id);
 
             return _mapper.Map<IEnumerable<CategoryDTO>>(categorys);
         }
 
-        public async Task<CategoryDTO> Insert(CategoryDTO categoryDTO)
+        public async Task<CategoryDTO> Insert(CategoryPostDTO categoryPostDTO)
         {
-            var category = _mapper.Map<Category>(categoryDTO);
+            var category = _mapper.Map<Category>(categoryPostDTO);
             var categoryUpdated = await _repository.Insert(category);
 
             return _mapper.Map<CategoryDTO>(categoryUpdated);

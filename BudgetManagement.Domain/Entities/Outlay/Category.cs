@@ -26,7 +26,7 @@ namespace BudgetManagement.Domain.Entities.Outlay
 
         public void ValidateDomain(string name, string description)
         {
-            DomainExceptionValidation.When(Name.Length < 0, "Value must be more than zero.");
+            DomainExceptionValidation.When(name.Length < 0, "Value must be more than zero.");
 
             Name = name;            
             Description = description;

@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Application.DTOs;
+﻿using BudgetManagement.Application.DTOs.Outlay.Spent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace BudgetManagement.Application.Interfaces
 {
     public interface ISpentService
     {
-        Task<SpentDTO> Insert(SpentDTO spentDTO);
+        Task<SpentDTO> Insert(SpentPostDTO spentPostDTO);
         Task<SpentDTO> Update(SpentDTO spentDTO);
         Task<SpentDTO> Delete(int id);
         Task<SpentDTO> GetAsync(int id);

@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Application.DTOs;
+﻿using BudgetManagement.Application.DTOs.Outlay.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ namespace BudgetManagement.Application.Interfaces
 {
     public interface ICategoryService
     {
-        Task<CategoryDTO> Insert(CategoryDTO categoryDTO);
+        Task<CategoryDTO> Insert(CategoryPostDTO categoryPostDTO);
         Task<CategoryDTO> Update(CategoryDTO categoryDTO);
         Task<CategoryDTO> Delete(int id);
         Task<CategoryDTO> GetAsync(int id);
-        Task<IEnumerable<CategoryDTO>> GetAllAsync();
+        Task<IEnumerable<CategoryDTO>> GetAllAsync(int id);
     }
 }

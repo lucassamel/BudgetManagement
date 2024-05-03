@@ -8,6 +8,6 @@ namespace BudgetManagement.Domain.Interfaces
         Task<Category> Update(Category category);
         Task<Category> Delete(int id);
         Task<Category> GetAsync(int id);
-        Task<IEnumerable<Category>> GetAllAsync();
+        Task<IEnumerable<Category>> GetAllAsync(int id);
     }
 }

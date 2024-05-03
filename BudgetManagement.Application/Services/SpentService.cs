@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BudgetManagement.Application.DTOs;
+using BudgetManagement.Application.DTOs.Outlay.Spent;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Domain.Entities.Outlay;
 using BudgetManagement.Domain.Interfaces;
@@ -43,9 +43,9 @@ namespace BudgetManagement.Application.Services
             return _mapper.Map<IEnumerable<SpentDTO>>(spents);
         }
 
-        public async Task<SpentDTO> Insert(SpentDTO spentDTO)
+        public async Task<SpentDTO> Insert(SpentPostDTO spentPostDTO)
         {
-            var spent = _mapper.Map<Spent>(spentDTO);
+            var spent = _mapper.Map<Spent>(spentPostDTO);
             var spentUpdated = await _repository.Insert(spent);
 
             return _mapper.Map<SpentDTO>(spentUpdated);
