@@ -1,11 +1,7 @@
-﻿using BudgetManagement.Domain.Validations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BudgetManagement.Domain.Entities.Outlay;
+using BudgetManagement.Domain.Validations;
 
-namespace BudgetManagement.Domain.Entities.User
+namespace BudgetManagement.Domain.Entities.Account
 {
     public class User
     {
@@ -15,6 +11,8 @@ namespace BudgetManagement.Domain.Entities.User
         public bool IsAdmin { get; set; }
         public byte[] PasswordHash { get; private set; }
         public byte[] PasswordSalt { get; private set; }
+        public ICollection<Spent> Spents { get; set; }
+        public ICollection<Category> Categories { get; set; }
 
         public User(int id, string name, string email)
         {

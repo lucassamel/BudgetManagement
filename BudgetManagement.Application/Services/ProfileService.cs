@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using BudgetManagement.Application.DTOs;
+using BudgetManagement.Application.DTOs.Account;
 using BudgetManagement.Application.Interfaces;
-using BudgetManagement.Domain.Entities.User;
 using BudgetManagement.Domain.Interfaces;
-using Profile = BudgetManagement.Domain.Entities.User.Profile;
+using Profile = BudgetManagement.Domain.Entities.Account.Profile;
 
 namespace BudgetManagement.Application.Services
 {

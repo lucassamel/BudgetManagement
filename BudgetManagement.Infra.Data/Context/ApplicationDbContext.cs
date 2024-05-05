@@ -1,5 +1,5 @@
-﻿using BudgetManagement.Domain.Entities.Outlay;
-using BudgetManagement.Domain.Entities.User;
+﻿using BudgetManagement.Domain.Entities.Account;
+using BudgetManagement.Domain.Entities.Outlay;
 using Microsoft.EntityFrameworkCore;
 
 namespace BudgetManagement.Infra.Data.Context

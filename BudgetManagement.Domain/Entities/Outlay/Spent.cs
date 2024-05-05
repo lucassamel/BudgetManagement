@@ -1,19 +1,17 @@
-﻿using BudgetManagement.Domain.Entities.User;
-using BudgetManagement.Domain.Validations;
-using System.ComponentModel.DataAnnotations;
+﻿using BudgetManagement.Domain.Validations;
 
 namespace BudgetManagement.Domain.Entities.Outlay
 {
     public class Spent
     {        
         public int Id { get; private set; }
-        public int IdCategory { get; set; }
-        public int IdProfile { get; set; }
+        public int IdCategory { get; set; }        
+        public int IdUser { get; set; }
         public decimal Value { get; private set; }
         public DateOnly Date { get; private set; }
         public string Description { get; private set; } 
-        public Category Category { get; set; }
-        public Profile Profile { get; set; }
+        public Category Category { get; set; }       
+        public Account.User User { get; set; }
 
         public Spent(int id,decimal value, DateOnly date, string description)
         {

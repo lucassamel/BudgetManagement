@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
-using BudgetManagement.Application.DTOs;
+using BudgetManagement.Application.DTOs.Account;
 using BudgetManagement.Application.Interfaces;
-using BudgetManagement.Domain.Entities.User;
+using BudgetManagement.Domain.Entities.Account;
 using BudgetManagement.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BudgetManagement.Application.Services
 {

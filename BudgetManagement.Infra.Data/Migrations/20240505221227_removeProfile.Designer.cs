@@ -4,6 +4,7 @@ using BudgetManagement.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BudgetManagement.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240505221227_removeProfile")]
+    partial class removeProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,9 +113,14 @@ namespace BudgetManagement.Infra.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("ProfileId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IdUser");
+
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Category");
                 });
@@ -139,6 +147,9 @@ namespace BudgetManagement.Infra.Data.Migrations
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProfileId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");
 
@@ -147,6 +158,8 @@ namespace BudgetManagement.Infra.Data.Migrations
                     b.HasIndex("IdCategory");
 
                     b.HasIndex("IdUser");
+
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Spent");
                 });
@@ -158,6 +171,10 @@ namespace BudgetManagement.Infra.Data.Migrations
                         .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("BudgetManagement.Domain.Entities.Account.Profile", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("ProfileId");
 
                     b.Navigation("User");
                 });
@@ -176,9 +193,20 @@ namespace BudgetManagement.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("BudgetManagement.Domain.Entities.Account.Profile", null)
+                        .WithMany("Spents")
+                        .HasForeignKey("ProfileId");
+
                     b.Navigation("Category");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BudgetManagement.Domain.Entities.Account.Profile", b =>
+                {
+                    b.Navigation("Categories");
+
+                    b.Navigation("Spents");
                 });
 
             modelBuilder.Entity("BudgetManagement.Domain.Entities.Account.User", b =>

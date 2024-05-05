@@ -1,15 +1,14 @@
-﻿using BudgetManagement.Domain.Entities.User;
-using BudgetManagement.Domain.Validations;
+﻿using BudgetManagement.Domain.Validations;
 
 namespace BudgetManagement.Domain.Entities.Outlay
 {
     public class Category
     {        
         public int Id { get; private set; }
-        public int IdProfile { get; set; }        
+        public int IdUser { get; set; }        
         public string Name { get; private set; }
         public string Description { get; private set; }     
-        public Profile Profile { get; set; }
+        public Account.User User { get; set; }
         public ICollection<Spent> Spents { get; set; }
 
         public Category(int id, string name, string description)

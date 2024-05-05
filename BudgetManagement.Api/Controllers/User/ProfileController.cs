@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using BudgetManagement.Application.DTOs;
+﻿using BudgetManagement.Application.DTOs.Account;
 using BudgetManagement.Application.Interfaces;
-using BudgetManagement.Application.Services;
 using BudgetManagement.Infra.Ioc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Profile = BudgetManagement.Domain.Entities.User.Profile;
 
 namespace BudgetManagement.Api.Controllers.User
 {

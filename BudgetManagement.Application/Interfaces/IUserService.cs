@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Application.DTOs;
+﻿using BudgetManagement.Application.DTOs.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;

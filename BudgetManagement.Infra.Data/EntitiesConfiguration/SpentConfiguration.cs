@@ -17,8 +17,8 @@ namespace BudgetManagement.Infra.Data.EntitiesConfiguration
             builder.HasOne(x => x.Category).WithMany(x => x.Spents)
                 .HasForeignKey(x => x.IdCategory).IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(x => x.Profile).WithMany(x => x.Spents)
-                .HasForeignKey(x =>x.IdProfile).IsRequired()
+            builder.HasOne(x => x.User).WithMany(x => x.Spents)
+                .HasForeignKey(x =>x.IdUser).IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

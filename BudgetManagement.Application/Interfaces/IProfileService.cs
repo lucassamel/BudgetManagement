@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Application.DTOs;
+﻿using BudgetManagement.Application.DTOs.Account;
 using BudgetManagement.Domain.Entities.User;
 
 namespace BudgetManagement.Application.Interfaces

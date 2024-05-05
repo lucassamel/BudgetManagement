@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgetManagement.Application.DTOs
+namespace BudgetManagement.Application.DTOs.Account
 {
     public class ProfileDTO
     {

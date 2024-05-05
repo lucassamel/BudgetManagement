@@ -45,7 +45,7 @@ namespace BudgetManagement.Api.Controllers.Outlay
         public async Task<ActionResult> Insert(CategoryPostDTO categoryPostDTO)
         {
             //Retrieve the UserID from the JWT token
-            categoryPostDTO.IdProfile = User.GetId();
+            categoryPostDTO.IdUser = User.GetId();
             var category = await _categoryService.Insert(categoryPostDTO);
 
             if (category is null)

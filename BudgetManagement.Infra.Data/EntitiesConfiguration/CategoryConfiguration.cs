@@ -14,8 +14,8 @@ namespace BudgetManagement.Infra.Data.EntitiesConfiguration
             
             builder.HasMany(x => x.Spents).WithOne(x => x.Category)
                 .HasForeignKey(x => x.Id);
-            builder.HasOne(x => x.Profile).WithMany(x => x.Categories)
-                .HasForeignKey(x => x.IdProfile);
+            builder.HasOne(x => x.User).WithMany(x => x.Categories)
+                .HasForeignKey(x => x.IdUser);
         }
     }
 }

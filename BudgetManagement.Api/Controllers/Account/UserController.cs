@@ -1,5 +1,5 @@
 ﻿using BudgetManagement.Api.Models;
-using BudgetManagement.Application.DTOs;
+using BudgetManagement.Application.DTOs.Account;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Domain.Account;
 using Microsoft.AspNetCore.Identity;

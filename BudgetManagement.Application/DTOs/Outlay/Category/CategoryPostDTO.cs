@@ -11,7 +11,7 @@ namespace BudgetManagement.Application.DTOs.Outlay.Category
     public class CategoryPostDTO
     {
         [JsonIgnore]
-        public int IdProfile { get; set; }
+        public int IdUser { get; set; }
         [Required(ErrorMessage = "Category Name is required.")]
         [MaxLength(50, ErrorMessage = "Name can't be more than 50 characters.")]
         public string Name { get; set; }

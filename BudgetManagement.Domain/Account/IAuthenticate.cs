@@ -1,4 +1,4 @@
-﻿using BudgetManagement.Domain.Entities.User;
+﻿using BudgetManagement.Domain.Entities.Account;
 
 namespace BudgetManagement.Domain.Account
 {
