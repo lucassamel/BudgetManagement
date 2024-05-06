@@ -21,12 +21,13 @@ namespace BudgetManagement.Infra.Data.Repositories
             if (user is not null)
                 _context.User.Remove(user);
 
-            return user;
+            return user!;
         }
 
-        public async Task<User> Get(int id)
+        public async Task<User?> Get(int id)
         {
-            return await _context.User.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _context.User.Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<User>> GetAll()

@@ -26,14 +26,16 @@ namespace BudgetManagement.Infra.Data.Repositories
             return spent;
         }
 
-        public async Task<Spent> GetAsync(int id)
+        public async Task<Spent?> GetAsync(int id, int idUser)
         {
-            return await _context.Spent.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _context.Spent.Where(x => x.Id == id && x.IdUser == idUser)
+                .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Spent>> GetAllAsync()
+        public async Task<IEnumerable<Spent>> GetAllAsync(int idUser)
         {
-            return await _context.Spent.ToListAsync();
+            return await _context.Spent.Where(x => x.IdUser == idUser)
+                .ToListAsync();
         }
 
         public async Task<Spent> Insert(Spent spent)

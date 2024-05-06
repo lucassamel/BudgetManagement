@@ -33,7 +33,7 @@ namespace BudgetManagement.Api.Controllers.Outlay
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
-            var categoryDTO = await _categoryService.GetAsync(id);
+            var categoryDTO = await _categoryService.GetAsync(id, User.GetId());
 
             if (categoryDTO is null)
                 return NotFound("Category not found.");
@@ -57,7 +57,7 @@ namespace BudgetManagement.Api.Controllers.Outlay
         [HttpPut]
         public async Task<ActionResult> Update(CategoryPutDTO categoryPutDTO)
         {
-            var categoryDTO = await _categoryService.GetAsync(categoryPutDTO.Id);
+            var categoryDTO = await _categoryService.GetAsync(categoryPutDTO.Id, User.GetId());
             if (categoryDTO is null)
                 return BadRequest("Category not found.");
 
@@ -83,7 +83,7 @@ namespace BudgetManagement.Api.Controllers.Outlay
                 return Unauthorized("You don't have permission to exclude a Category.");
             }
 
-            var category = await _categoryService.GetAsync(id);
+            var category = await _categoryService.GetAsync(id, User.GetId());
 
             if (category is null)
                 return NotFound("Category not found.");

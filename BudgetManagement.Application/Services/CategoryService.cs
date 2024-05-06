@@ -29,16 +29,16 @@ namespace BudgetManagement.Application.Services
             return _mapper.Map<CategoryDTO>(category);
         }
 
-        public async Task<CategoryDTO> GetAsync(int id)
+        public async Task<CategoryDTO> GetAsync(int id, int idUser)
         {
-            var category = await _repository.GetAsync(id);
+            var category = await _repository.GetAsync(id, idUser);
 
             return _mapper.Map<CategoryDTO>(category);
         }
 
-        public async Task<IEnumerable<CategoryDTO>> GetAllAsync(int id)
+        public async Task<IEnumerable<CategoryDTO>> GetAllAsync(int idUser)
         {
-            var categorys = await _repository.GetAllAsync(id);
+            var categorys = await _repository.GetAllAsync(idUser);
 
             return _mapper.Map<IEnumerable<CategoryDTO>>(categorys);
         }

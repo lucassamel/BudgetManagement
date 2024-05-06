@@ -7,7 +7,7 @@ namespace BudgetManagement.Domain.Interfaces
         Task<Category> Insert(Category category);
         Task<Category> Update(Category category);
         Task<Category> Delete(int id);
-        Task<Category> GetAsync(int id);
-        Task<IEnumerable<Category>> GetAllAsync(int id);
+        Task<Category?> GetAsync(int id, int idUser);
+        Task<IEnumerable<Category>> GetAllAsync(int idUser);
     }
 }

@@ -21,10 +21,10 @@ namespace BudgetManagement.Infra.Data.Repositories
             return category;
         }
 
-        public async Task<Category> GetAsync(int id)
+        public async Task<Category?> GetAsync(int id, int idUser)
         {
-            return await _context.Category.Where(x => x.Id == id).
-                Include(x => x.User)
+            return await _context.Category.Where(x => x.Id == id && x.IdUser == idUser)
+                .Include(x => x.User)
                 .Include(x => x.Spents).FirstOrDefaultAsync();
         }
 

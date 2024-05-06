@@ -12,7 +12,7 @@ namespace BudgetManagement.Application.Interfaces
         Task<CategoryDTO> Insert(CategoryPostDTO categoryPostDTO);
         Task<CategoryDTO> Update(CategoryDTO categoryDTO);
         Task<CategoryDTO> Delete(int id);
-        Task<CategoryDTO> GetAsync(int id);
-        Task<IEnumerable<CategoryDTO>> GetAllAsync(int id);
+        Task<CategoryDTO> GetAsync(int id, int idUser);
+        Task<IEnumerable<CategoryDTO>> GetAllAsync(int idUser);
     }
 }
