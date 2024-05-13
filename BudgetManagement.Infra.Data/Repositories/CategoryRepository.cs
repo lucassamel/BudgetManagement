@@ -1,6 +1,8 @@
 ﻿using BudgetManagement.Domain.Entities.Outlay;
 using BudgetManagement.Domain.Interfaces;
+using BudgetManagement.Domain.Pagination;
 using BudgetManagement.Infra.Data.Context;
+using BudgetManagement.Infra.Data.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace BudgetManagement.Infra.Data.Repositories
@@ -28,12 +30,14 @@ namespace BudgetManagement.Infra.Data.Repositories
                 .Include(x => x.Spents).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync(int id)
+        public async Task<PagedList<Category>> GetAllAsync(int idUser, int pageNumber, int pageSize)
         {
-            return await _context.Category
-                .Where(x => x.IdUser == id)
+            var query = _context.Category
+                .Where(x => x.IdUser == idUser)
                 .Include(x => x.User)
-                .Include(x => x.Spents).ToListAsync();
+                .Include(x => x.Spents).AsQueryable();
+
+            return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
         }
 
         public async Task<Category> Insert(Category category)

@@ -16,6 +16,7 @@ namespace BudgetManagement.Application.DTOs.Outlay.Category
         public string Description { get; set; }        
         [JsonIgnore]
         public ICollection<SpentDTO> SpentsDTO { get; set; }
+        [JsonIgnore]
         public UserDTO UserDTO { get; set; }
     }
 }

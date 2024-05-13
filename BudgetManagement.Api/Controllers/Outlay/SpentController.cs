@@ -20,17 +20,17 @@ namespace BudgetManagement.Api.Controllers.Outlay
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult> GetAll(int idUser)
         {
-            var spentsDTO = await _spentService.GetAllAsync();
+            var spentsDTO = await _spentService.GetAllAsync(idUser);
 
             return Ok(spentsDTO);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(int id)
+        public async Task<ActionResult> Get(int id, int idUser)
         {
-            var spentDTO = await _spentService.GetAsync(id);
+            var spentDTO = await _spentService.GetAsync(id, idUser);
 
             if (spentDTO is null)
                 return NotFound("Spent not found.");
@@ -63,15 +63,15 @@ namespace BudgetManagement.Api.Controllers.Outlay
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var userId = User.GetId();
-            var user = await _userService.Get(userId);
+            var idUser = User.GetId();
+            var user = await _userService.Get(idUser);
 
             if (!user.IsAdmin)
             {
                 return Unauthorized("You don't have permission to exclude a Spent.");
             }
 
-            var spent = await _spentService.GetAsync(id);
+            var spent = await _spentService.GetAsync(id, idUser);
 
             if (spent is null)
                 return NotFound("Spent not found.");

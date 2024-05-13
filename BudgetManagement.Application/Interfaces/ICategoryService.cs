@@ -1,9 +1,5 @@
 ﻿using BudgetManagement.Application.DTOs.Outlay.Category;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BudgetManagement.Domain.Pagination;
 
 namespace BudgetManagement.Application.Interfaces
 {
@@ -13,6 +9,6 @@ namespace BudgetManagement.Application.Interfaces
         Task<CategoryDTO> Update(CategoryDTO categoryDTO);
         Task<CategoryDTO> Delete(int id);
         Task<CategoryDTO> GetAsync(int id, int idUser);
-        Task<IEnumerable<CategoryDTO>> GetAllAsync(int idUser);
+        Task<PagedList<CategoryDTO>> GetAllAsync(int idUser, int pageNumber, int pageSize);
     }
 }

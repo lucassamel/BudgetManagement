@@ -1,5 +1,4 @@
 ﻿using BudgetManagement.Domain.Entities.Account;
-using BudgetManagement.Domain.Entities.User;
 using BudgetManagement.Domain.Interfaces;
 using BudgetManagement.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +20,7 @@ namespace BudgetManagement.Infra.Data.Repositories
             if (user is not null)
                 _context.User.Remove(user);
 
-            return user!;
+            return user;
         }
 
         public async Task<User?> Get(int id)

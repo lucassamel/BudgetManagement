@@ -3,11 +3,7 @@ using BudgetManagement.Application.DTOs.Outlay.Category;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Domain.Entities.Outlay;
 using BudgetManagement.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BudgetManagement.Domain.Pagination;
 
 namespace BudgetManagement.Application.Services
 {
@@ -36,11 +32,13 @@ namespace BudgetManagement.Application.Services
             return _mapper.Map<CategoryDTO>(category);
         }
 
-        public async Task<IEnumerable<CategoryDTO>> GetAllAsync(int idUser)
+        public async Task<PagedList<CategoryDTO>> GetAllAsync(int idUser, int pageNumber, int pageSize)
         {
-            var categorys = await _repository.GetAllAsync(idUser);
+            var categories = await _repository.GetAllAsync(idUser, pageNumber, pageSize);
 
-            return _mapper.Map<IEnumerable<CategoryDTO>>(categorys);
+             var categoriesDTO = _mapper.Map<IEnumerable<CategoryDTO>>(categories);
+
+            return new PagedList<CategoryDTO>(categoriesDTO,pageNumber,pageSize, categories.TotalCount);
         }
 
         public async Task<CategoryDTO> Insert(CategoryPostDTO categoryPostDTO)

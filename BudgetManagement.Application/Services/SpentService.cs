@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BudgetManagement.Application.DTOs.Outlay.Spent;
 using BudgetManagement.Application.Interfaces;
+using BudgetManagement.Domain.Entities.Account;
 using BudgetManagement.Domain.Entities.Outlay;
 using BudgetManagement.Domain.Interfaces;
 using System;
@@ -29,16 +30,16 @@ namespace BudgetManagement.Application.Services
             return _mapper.Map<SpentDTO>(spent);
         }
 
-        public async Task<SpentDTO> GetAsync(int id)
-        {
-            var spent = await _repository.GetAsync(id);
+        public async Task<SpentDTO> GetAsync(int id, int idUser)
+        {            
+            var spent = await _repository.GetAsync(id, idUser);
 
             return _mapper.Map<SpentDTO>(spent);
         }
 
-        public async Task<IEnumerable<SpentDTO>> GetAllAsync()
+        public async Task<IEnumerable<SpentDTO>> GetAllAsync(int idUser)
         {
-            var spents = await _repository.GetAllAsync();
+            var spents = await _repository.GetAllAsync(idUser);
 
             return _mapper.Map<IEnumerable<SpentDTO>>(spents);
         }

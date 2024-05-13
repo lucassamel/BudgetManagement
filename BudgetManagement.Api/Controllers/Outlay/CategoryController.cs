@@ -1,4 +1,6 @@
-﻿using BudgetManagement.Application.DTOs.Outlay.Category;
+﻿using BudgetManagement.Api.Extensions;
+using BudgetManagement.Api.Models;
+using BudgetManagement.Application.DTOs.Outlay.Category;
 using BudgetManagement.Application.Interfaces;
 using BudgetManagement.Infra.Ioc;
 using Microsoft.AspNetCore.Http;
@@ -22,12 +24,16 @@ namespace BudgetManagement.Api.Controllers.Outlay
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult> GetAll([FromQuery]PaginationParams paginationParams)
         {
             //Retrieve all user's Categories
-            var categorysDTO = await _categoryService.GetAllAsync(User.GetId());
+            var categoriesDTO = await _categoryService.GetAllAsync(User.GetId()
+                , paginationParams.PageNumber,paginationParams.PageSize);
 
-            return Ok(categorysDTO);
+            Response.AddPaginationHeader(new PaginationHeader(categoriesDTO.CurrentPage,
+                categoriesDTO.PageSize, categoriesDTO.TotalCount, categoriesDTO.TotalPages));
+
+            return Ok(categoriesDTO);
         }
 
         [HttpGet("{id}")]
