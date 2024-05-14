@@ -1,3 +1,4 @@
+using BudgetManagement.Api.Middleware;
 using BudgetManagement.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
