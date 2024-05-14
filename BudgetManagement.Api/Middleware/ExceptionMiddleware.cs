@@ -4,18 +4,12 @@ using System.Text.Json;
 
 namespace BudgetManagement.Api.Middleware
 {
-    public class ExceptionMiddleware
+    public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, 
+        IHostEnvironment environment)
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionMiddleware> _logger;
-        private readonly IHostEnvironment _environment;
-
-        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment environment)
-        {
-            _next = next;
-            _logger = logger;
-            _environment = environment;
-        }
+        private readonly RequestDelegate _next = next;
+        private readonly ILogger<ExceptionMiddleware> _logger = logger;
+        private readonly IHostEnvironment _environment = environment;
 
         public async Task InvokeAsync(HttpContext context)
         {
@@ -37,8 +31,7 @@ namespace BudgetManagement.Api.Middleware
 
                 var json = JsonSerializer.Serialize(response, options);
                 await context.Response.WriteAsync(json);
-            }           
-
+            }          
             
         }
     }

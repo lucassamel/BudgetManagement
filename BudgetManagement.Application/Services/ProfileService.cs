@@ -6,16 +6,10 @@ using Profile = BudgetManagement.Domain.Entities.Account.Profile;
 
 namespace BudgetManagement.Application.Services
 {
-    public class ProfileService : IProfileService
+    public class ProfileService(IProfileRepository repository, IMapper mapper) : IProfileService
     {
-        private readonly IProfileRepository _repository;
-        private readonly IMapper _mapper;
-
-        public ProfileService(IProfileRepository repository, IMapper mapper)
-        {
-            _repository = repository;
-            _mapper = mapper;
-        }
+        private readonly IProfileRepository _repository = repository;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<ProfileDTO> Delete(int id)
         {

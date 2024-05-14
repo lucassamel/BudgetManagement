@@ -7,16 +7,10 @@ using BudgetManagement.Domain.Pagination;
 
 namespace BudgetManagement.Application.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService(ICategoryRepository categoryRepository, IMapper mapper) : ICategoryService
     {
-        private readonly ICategoryRepository _repository;
-        private readonly IMapper _mapper;       
-
-        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
-        {
-            _repository = categoryRepository;
-            _mapper = mapper;
-        }
+        private readonly ICategoryRepository _repository = categoryRepository;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<CategoryDTO> Delete(int id)
         {

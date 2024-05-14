@@ -9,16 +9,10 @@ namespace BudgetManagement.Api.Controllers.Account
 {
     [Controller]
     [Route("api/[controller]")]
-    public class UserController : Controller
+    public class UserController(IAuthenticate authenticate, IUserService userService) : Controller
     {
-        private readonly IAuthenticate _authenticate;
-        private readonly IUserService _userService;
-
-        public UserController(IAuthenticate authenticate, IUserService userService)
-        {
-            _authenticate = authenticate;
-            _userService = userService;
-        }
+        private readonly IAuthenticate _authenticate = authenticate;
+        private readonly IUserService _userService = userService;
 
         [HttpPost("register")]
         public async Task<ActionResult<UserToken>> Insert(UserDTO userDTO)

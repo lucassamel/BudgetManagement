@@ -5,13 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BudgetManagement.Infra.Data.Repositories
 {
-    public class SpentRepository : ISpentRepository
+    public class SpentRepository(ApplicationDbContext context) : ISpentRepository
     {
-        private readonly ApplicationDbContext _context;
-        public SpentRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDbContext _context = context;
+
         public async Task<Spent> Delete(int id)
         {
             var spent = await _context.Spent.FindAsync(id);

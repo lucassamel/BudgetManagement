@@ -1,27 +1,15 @@
 ﻿using AutoMapper;
 using BudgetManagement.Application.DTOs.Outlay.Spent;
 using BudgetManagement.Application.Interfaces;
-using BudgetManagement.Domain.Entities.Account;
 using BudgetManagement.Domain.Entities.Outlay;
 using BudgetManagement.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudgetManagement.Application.Services
 {
-    public class SpentService : ISpentService
+    public class SpentService(ISpentRepository spentRepository, IMapper mapper) : ISpentService
     {
-        private readonly ISpentRepository _repository;
-        private readonly IMapper _mapper;
-
-        public SpentService(ISpentRepository spentRepository, IMapper mapper)
-        {
-            _repository = spentRepository;
-            _mapper = mapper;
-        }
+        private readonly ISpentRepository _repository = spentRepository;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<SpentDTO> Delete(int id)
         {

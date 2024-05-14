@@ -7,13 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BudgetManagement.Infra.Data.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository(ApplicationDbContext context) : ICategoryRepository
     {
-        private readonly ApplicationDbContext _context;
-        public CategoryRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDbContext _context = context;
+
         public async Task<Category> Delete(int id)
         {
             var category = await _context.Category.FindAsync(id);

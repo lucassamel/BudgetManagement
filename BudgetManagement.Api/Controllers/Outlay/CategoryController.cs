@@ -11,17 +11,10 @@ namespace BudgetManagement.Api.Controllers.Outlay
     [Route("api/[controller]")]
     [ApiController]
     
-    public class CategoryController : ControllerBase
+    public class CategoryController(ICategoryService categoryService, IUserService userService) : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
-        private readonly IUserService _userService;
-
-        public CategoryController(ICategoryService categoryService, IUserService userService)
-        {
-            _categoryService = categoryService;
-            _userService = userService;
-
-        }
+        private readonly ICategoryService _categoryService = categoryService;
+        private readonly IUserService _userService = userService;
 
         [HttpGet]
         public async Task<ActionResult> GetAll([FromQuery]PaginationParams paginationParams)

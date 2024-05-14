@@ -8,16 +8,10 @@ namespace BudgetManagement.Api.Controllers.Outlay
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SpentController : ControllerBase
+    public class SpentController(ISpentService spentService, IUserService userService) : ControllerBase
     {
-        private readonly ISpentService _spentService;
-        private readonly IUserService _userService;
-
-        public SpentController(ISpentService spentService, IUserService userService)
-        {
-            _spentService = spentService;
-            _userService = userService;
-        }
+        private readonly ISpentService _spentService = spentService;
+        private readonly IUserService _userService = userService;
 
         [HttpGet]
         public async Task<ActionResult> GetAll(int idUser)

@@ -10,17 +10,10 @@ namespace BudgetManagement.Api.Controllers.User
     [Route("api/[controller]")]
     [Authorize]
 
-    public class ProfileController : Controller
+    public class ProfileController(IProfileService profileService, IUserService userService) : Controller
     {
-        private readonly IProfileService _profileService;
-        private readonly IUserService _userService;
-       
-        public ProfileController(IProfileService profileService, IUserService userService)
-        {
-            _profileService = profileService;
-            _userService = userService;
-            
-        }
+        private readonly IProfileService _profileService = profileService;
+        private readonly IUserService _userService = userService;
 
         [HttpGet]
         public async Task<ActionResult> GetAll() 

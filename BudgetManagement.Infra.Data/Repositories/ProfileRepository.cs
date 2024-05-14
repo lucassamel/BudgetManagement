@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BudgetManagement.Infra.Data.Repositories
 {
-    public class ProfileRepository : IProfileRepository
+    public class ProfileRepository(ApplicationDbContext context) : IProfileRepository
     {
-        private readonly ApplicationDbContext _context;
-
-        public ProfileRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDbContext _context = context;
 
         public async Task<Profile> Delete(int id)
         {
